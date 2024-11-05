@@ -55,7 +55,7 @@
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-links > a {
             color: white;
             text-decoration: none;
             margin-left: 2rem;
@@ -65,6 +65,13 @@
         .dropdown {
             position: relative;
             display: inline-block;
+        }
+
+        .dropdown > a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
         }
 
         .dropdown-content {
@@ -262,15 +269,64 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links.active {
+                display: flex;
             }
             
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown > a {
+                width: 100%;
+                padding: 1rem;
+                margin: 0;
+            }
+
+            .dropdown-content {
+                position: static;
+                background-color: var(--secondary);
+                width: 100%;
+                margin-top: 0;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+
+            .dropdown-content a {
+                color: white;
+                padding: 0.8rem 1rem;
+            }
+
+            .dropdown-content a:hover {
+                background-color: var(--primary);
+                color: white;
+            }
+
+            .nav-links > a {
+                padding: 1rem;
+                margin: 0;
+                width: 100%;
+                text-align: left;
             }
 
             .mission-vision {
@@ -346,7 +402,7 @@
                 <a href="careers.html">Careers</a>
                 <a href="#contact">Contact</a>
             </div>
-            <div class="mobile-menu-btn">☰</div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
 
@@ -437,5 +493,12 @@
             </ul>
         </div>
     </section>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
