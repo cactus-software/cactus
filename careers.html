@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .job-listing { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
+        .job-title { font-size: 1.5em; color: #333; }
+        .job-details { margin: 10px 0; }
+        .apply-form { display: none; flex-direction: column; max-width: 300px; margin-top: 10px; }
+        .apply-form input { margin: 5px 0; padding: 8px; font-size: 1em; }
+        .apply-form button { padding: 10px; font-size: 1em; color: white; background-color: #007BFF; border: none; cursor: pointer; }
+        .apply-form button:hover { background-color: #0056b3; }
+    </style>
+    <script>
+        function showForm(jobTitle) {
+            document.getElementById("apply-job-title").innerText = jobTitle;
+            document.getElementById("job-title-input").value = jobTitle;
+            document.getElementById("apply-form").style.display = "flex";
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const jobTitle = document.getElementById("job-title-input").value;
+            if (email) {
+                alert("Gracias, te contactaremos pronto sobre el puesto de " + jobTitle + ".");
+                document.getElementById("apply-form").reset();
+                document.getElementById("apply-form").style.display = "none";
+                // Aquí se puede agregar código para enviar el formulario al backend o servicio de email
+            } else {
+                alert("Por favor, ingresa tu email.");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Oportunidades de Carrera</h1>
+
+    <div class="job-listing">
+        <div class="job-title">Quality Assurance Engineer</div>
+        <div class="job-details">
+            <p>Tests all software solutions, ensures product quality and reliability, develops testing protocols, reports and tracks bugs.</p>
+            <p><strong>Skills:</strong> Testing methodologies, automation testing</p>
+        </div>
+        <button onclick="showForm('Quality Assurance Engineer')">Aplicar</button>
+    </div>
+
+    <div class="job-listing">
+        <div class="job-title">Junior Developer</div>
+        <div class="job-details">
+            <p>Assists in both frontend and backend development, learns from senior team members, works on specific features and modules.</p>
+            <p><strong>Skills:</strong> Basic programming knowledge, eager to learn</p>
+        </div>
+        <button onclick="showForm('Junior Developer')">Aplicar</button>
+    </div>
+
+    <div class="job-listing">
+        <div class="job-title">Technical Support Specialist</div>
+        <div class="job-details">
+            <p>Provides first-line support to clients, handles basic troubleshooting, documents common issues.</p>
+            <p><strong>Skills:</strong> Customer service, basic technical knowledge</p>
+        </div>
+        <button onclick="showForm('Technical Support Specialist')">Aplicar</button>
+    </div>
+
+    <!-- Más posiciones se pueden agregar de la misma forma -->
+
+    <!-- Formulario de Aplicación -->
+    <div id="apply-form" class="apply-form">
+        <h3>Aplicar a: <span id="apply-job-title"></span></h3>
+        <form onsubmit="submitApplication(event)">
+            <input type="hidden" id="job-title-input" name="jobTitle">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+            <button type="submit">Enviar Aplicación</button>
+        </form>
+    </div>
+
+</body>
+</html>
