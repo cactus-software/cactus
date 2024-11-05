@@ -3,16 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers</title>
+    <title>Oportunidades de Carrera</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .job-listing { margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 20px; }
-        .job-title { font-size: 1.5em; color: #333; }
-        .job-details { margin: 10px 0; }
-        .apply-form { display: none; flex-direction: column; max-width: 300px; margin-top: 10px; }
-        .apply-form input { margin: 5px 0; padding: 8px; font-size: 1em; }
-        .apply-form button { padding: 10px; font-size: 1em; color: white; background-color: #007BFF; border: none; cursor: pointer; }
-        .apply-form button:hover { background-color: #0056b3; }
+        /* Colores y estilo de acuerdo a tu paleta */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .job-listing {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #fafafa;
+        }
+        .job-title {
+            font-size: 1.3em;
+            color: #2980b9;
+        }
+        .job-details p {
+            margin: 5px 0;
+        }
+        .job-skills {
+            font-weight: bold;
+            color: #555;
+        }
+        .apply-button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-size: 1em;
+            color: white;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .apply-button:hover {
+            background-color: #1b5e8a;
+        }
+        #apply-form {
+            display: none;
+            flex-direction: column;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #apply-form label, #apply-form input, #apply-form button {
+            font-size: 1em;
+            margin: 8px 0;
+        }
+        #apply-form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #apply-form button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #apply-form button:hover {
+            background-color: #1b5e8a;
+        }
     </style>
     <script>
         function showForm(jobTitle) {
@@ -29,48 +107,49 @@
                 alert("Gracias, te contactaremos pronto sobre el puesto de " + jobTitle + ".");
                 document.getElementById("apply-form").reset();
                 document.getElementById("apply-form").style.display = "none";
-                // Aquí se puede agregar código para enviar el formulario al backend o servicio de email
+                // Aquí puedes enviar el correo electrónico o almacenar la información como necesites.
             } else {
-                alert("Por favor, ingresa tu email.");
+                alert("Por favor, ingresa tu correo electrónico.");
             }
         }
     </script>
 </head>
 <body>
 
+<div class="container">
     <h1>Oportunidades de Carrera</h1>
 
     <div class="job-listing">
         <div class="job-title">Quality Assurance Engineer</div>
         <div class="job-details">
             <p>Tests all software solutions, ensures product quality and reliability, develops testing protocols, reports and tracks bugs.</p>
-            <p><strong>Skills:</strong> Testing methodologies, automation testing</p>
+            <p class="job-skills">Skills: Testing methodologies, automation testing</p>
         </div>
-        <button onclick="showForm('Quality Assurance Engineer')">Aplicar</button>
+        <button class="apply-button" onclick="showForm('Quality Assurance Engineer')">Aplicar</button>
     </div>
 
     <div class="job-listing">
         <div class="job-title">Junior Developer</div>
         <div class="job-details">
             <p>Assists in both frontend and backend development, learns from senior team members, works on specific features and modules.</p>
-            <p><strong>Skills:</strong> Basic programming knowledge, eager to learn</p>
+            <p class="job-skills">Skills: Basic programming knowledge, eager to learn</p>
         </div>
-        <button onclick="showForm('Junior Developer')">Aplicar</button>
+        <button class="apply-button" onclick="showForm('Junior Developer')">Aplicar</button>
     </div>
 
     <div class="job-listing">
         <div class="job-title">Technical Support Specialist</div>
         <div class="job-details">
             <p>Provides first-line support to clients, handles basic troubleshooting, documents common issues.</p>
-            <p><strong>Skills:</strong> Customer service, basic technical knowledge</p>
+            <p class="job-skills">Skills: Customer service, basic technical knowledge</p>
         </div>
-        <button onclick="showForm('Technical Support Specialist')">Aplicar</button>
+        <button class="apply-button" onclick="showForm('Technical Support Specialist')">Aplicar</button>
     </div>
 
     <!-- Más posiciones se pueden agregar de la misma forma -->
 
     <!-- Formulario de Aplicación -->
-    <div id="apply-form" class="apply-form">
+    <div id="apply-form">
         <h3>Aplicar a: <span id="apply-job-title"></span></h3>
         <form onsubmit="submitApplication(event)">
             <input type="hidden" id="job-title-input" name="jobTitle">
@@ -79,6 +158,7 @@
             <button type="submit">Enviar Aplicación</button>
         </form>
     </div>
+</div>
 
 </body>
 </html>
