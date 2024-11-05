@@ -307,17 +307,24 @@
         }
 
         /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            display: none;
-            animation: slideIn 0.3s ease-out;
-        }
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    display: none;
+    animation: slideIn 0.3s ease-out;
+    z-index: 2000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
 
         @keyframes slideIn {
             from {
@@ -487,10 +494,11 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">&times;</button>
             <h2>Contact Us</h2>
-            <p>We'll get back to you with more information about the selected plan.</p>
+            <p>We'll get back to you with more information about the <span id="selectedPlan"></span>.</p>
             <form class="contact-form" action="https://formsubmit.co/cactus.software@outlook.com" method="POST">
-                <input type="hidden" name="_subject" id="emailSubject" value="Interest in Plan">
-                <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
+                <input type="hidden" name="_subject" id="emailSubject" value="">
+                <input type="hidden" name="plan" id="planName" value="">
+                <input type="hidden" name="_template" value="box">
                 
                 <div class="form-group">
                     <label for="email">Your Email</label>
@@ -500,7 +508,6 @@
                 <button type="submit" class="submit-btn">Send</button>
             </form>
         </div>
-    </div>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
@@ -510,12 +517,51 @@
             navLinks.classList.toggle('active');
         }
 
-        function openModal(planName) {
-            const modal = document.getElementById('contactModal');
-            const emailSubject = document.getElementById('emailSubject');
-            emailSubject.value = `Interest in ${planName}`;
-            modal.classList.add('active');
-        }
+function openModal(planName) {
+    const modal = document.getElementById('contactModal');
+    const emailSubject = document.getElementById('emailSubject');
+    const planInput = document.getElementById('planName');
+    const selectedPlanSpan = document.getElementById('selectedPlan');
+    
+    emailSubject.value = `New interest in ${planName}`;
+    planInput.value = planName;
+    selectedPlanSpan.textContent = planName;
+    modal.classList.add('active');
+}
+
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    // Deshabilitar el botón de envío y mostrar estado de carga
+    const submitBtn = this.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    fetch(this.action, {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        showToast('Thank you! We will contact you soon about your selected plan.');
+        closeModal();
+        this.reset();
+    }).catch(error => {
+        showToast('There was an error. Please try again.');
+    }).finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send';
+    });
+});
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.style.display = 'block';
+    
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 4000);
+}
 
         function closeModal() {
             const modal = document.getElementById('contactModal');
