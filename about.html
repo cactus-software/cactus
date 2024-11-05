@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cactus Software | About Us</title>
+    <style>
+        :root {
+            --primary: #2B7A4B;
+            --secondary: #81B29A;
+            --accent: #F2CC8F;
+            --dark: #3D405B;
+            --light: #F4F1DE;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            padding-top: 60px;
+        }
+
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin: 0;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .about-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .about-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-vision {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mission-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .mission-card p {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .values-section {
+            background-color: var(--light);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .values-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .value-card {
+            flex: 0 1 200px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .target-market {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .market-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .market-card {
+            flex: 0 1 150px;
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .market-card:hover {
+            transform: translateY(-5px);
+            background: var(--accent);
+        }
+
+        .ideal-client {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .ideal-client img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .client-content {
+            flex: 1;
+        }
+
+        .client-content h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .client-content ul {
+            list-style: none;
+        }
+
+        .client-content ul li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .client-content ul li::before {
+            content: "🌵";
+            position: absolute;
+            left: 0;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .values-grid {
+                padding: 1rem;
+            }
+
+            .value-card {
+                flex: 0 1 calc(50% - 1rem);
+            }
+
+            .market-card {
+                flex: 0 1 calc(33% - 1rem);
+            }
+
+            .ideal-client {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .ideal-client img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .client-content ul {
+                text-align: left;
+                display: inline-block;
+            }
+
+            .about-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <a href="index.html" class="logo">🌵 Cactus Software</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <div class="dropdown-content">
+                        <a href="services.html#core">Core Solutions</a>
+                        <a href="services.html#growth">Growth Suite</a>
+                        <a href="services.html#smart">Smart Tools</a>
+                        <a href="services.html#care">Care Package</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#">About ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#mission">Mission & Vision</a>
+                        <a href="#values">Values</a>
+                        <a href="#market">Target Market</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#">Plans ▼</a>
+                    <div class="dropdown-content">
+                        <a href="plans.html#seedling">Seedling Plan</a>
+                        <a href="plans.html#growing">Growing Plan</a>
+                        <a href="plans.html#blooming">Blooming Plan</a>
+                    </div>
+                </div>
+                <a href="careers.html">Careers</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu-btn">☰</div>
+        </nav>
+    </header>
+
+    <section class="about-header">
+        <h1>About Cactus Software</h1>
+        <p>Just like a cactus thrives in the Mexicali desert, we provide resilient and efficient solutions.</p>
+    </section>
+
+    <section id="mission" class="mission-vision">
+        <div class="mission-card">
+            <img src="./images/sun.png" alt="Mission">
+            <h2>Our Mission</h2>
+            <p>At Cactus Software, we empower small and medium-sized businesses in Mexicali with accessible technology solutions, helping them thrive in the digital age.</p>
+        </div>
+        <div class="mission-card">
+            <img src="./images/growth.png" alt="Vision">
+            <h2>Our Vision</h2>
+            <p>To be the trusted technology partner for every growing business in our region, known for creating lasting solutions that help local entrepreneurs succeed in an increasingly digital world.</p>
+        </div>
+    </section>
+
+    <section id="values" class="values-section">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Local Focus</h3>
+                <p>We're your neighbors, understanding the unique needs of Mexicali businesses.</p>
+            </div>
+            <div class="value-card">
+                <h3>Simplicity</h3>
+                <p>We make technology accessible and easy to use for everyone.</p>
+            </div>
+            <div class="value-card">
+                <h3>Reliability</h3>
+                <p>Like a cactus in the desert, our solutions are built to last.</p>
+            </div>
+            <div class="value-card">
+                <h3>Growth Partnership</h3>
+                <p>Your success is our success - we grow together.</p>
+            </div>
+            <div class="value-card">
+                <h3>Innovation with Purpose</h3>
+                <p>We bring modern solutions that make practical sense for your business.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="market" class="target-market">
+        <h2 class="section-title">Who We Serve</h2>
+        <div class="market-grid">
+            <div class="market-card">
+                <h3>Retail Stores</h3>
+            </div>
+            <div class="market-card">
+                <h3>Restaurants</h3>
+            </div>
+            <div class="market-card">
+                <h3>Medical Offices</h3>
+            </div>
+            <div class="market-card">
+                <h3>Auto Repair Shops</h3>
+            </div>
+            <div class="market-card">
+                <h3>Manufacturers</h3>
+            </div>
+            <div class="market-card">
+                <h3>Service Providers</h3>
+            </div>
+            <div class="market-card">
+                <h3>Local Distributors</h3>
+            </div>
+            <div class="market-card">
+                <h3>Family Businesses</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="ideal-client">
+        <img src="./images/remote-work.png" alt="Remote Work">
+        <div class="client-content">
+            <h2>Our Ideal Client</h2>
+            <ul>
+                <li>Wants to improve their business operations</li>
+                <li>Is ready to embrace digital solutions</li>
+                <li>Values local support and personalized service</li>
+                <li>Needs Spanish-speaking technical support</li>
+                <li>Seeks cost-effective solutions</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
