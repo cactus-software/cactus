@@ -6,15 +6,15 @@
     <title>Cactus Software | Plans</title>
     <style>
         :root {
+            --seedling: #40916C;
+            --growing: #2D6A4F;
+            --blooming: #F4A261;
             --primary: #2D6A4F;
-            --primary-light: #40916C;
             --secondary: #81B29A;
             --accent: #F4A261;
             --dark: #1B4332;
             --light: #F8F9F7;
             --card-bg: #FFFFFF;
-            --highlight: #95D5B2;
-            --sand: #FEFAE0;
             --shadow: rgba(0, 0, 0, 0.1);
         }
 
@@ -32,7 +32,6 @@
             padding-top: 60px;
         }
 
-        /* Navbar */
         .navbar {
             background-color: var(--primary);
             padding: 1rem;
@@ -40,7 +39,6 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px var(--shadow);
         }
 
         nav {
@@ -49,7 +47,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1rem;
         }
 
         .logo {
@@ -57,9 +54,6 @@
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .nav-links {
@@ -83,7 +77,6 @@
             color: white;
             text-decoration: none;
             padding: 0.5rem 1rem;
-            display: inline-block;
         }
 
         .dropdown-content {
@@ -106,7 +99,6 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            transition: all 0.3s ease;
         }
 
         .dropdown-content a:hover {
@@ -114,7 +106,6 @@
             color: var(--primary);
         }
 
-        /* Header */
         .plans-header {
             background-color: var(--primary);
             color: white;
@@ -127,7 +118,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Plans Section */
         .plans-container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -149,26 +139,34 @@
             transform: translateY(-5px);
         }
 
+        /* Plan specific colors */
+        .seedling .plan-header {
+            background-color: var(--seedling);
+        }
+
+        .growing .plan-header {
+            background-color: var(--growing);
+        }
+
+        .blooming .plan-header {
+            background-color: var(--blooming);
+        }
+
         .plan-header {
-            background-color: var(--primary-light);
             color: white;
             padding: 2rem;
             text-align: center;
         }
 
-        .blooming .plan-header {
-            background-color: var(--accent);
-        }
-
         .plan-name {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .plan-price {
-            font-size: 2rem;
-            font-weight: bold;
+        .plan-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         .plan-description {
@@ -194,17 +192,110 @@
 
         .plan-cta {
             display: inline-block;
+            width: 100%;
             background-color: var(--accent);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem;
             text-decoration: none;
             border-radius: 25px;
-            margin-top: 1rem;
+            text-align: center;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .seedling .plan-cta {
+            background-color: var(--seedling);
+        }
+
+        .growing .plan-cta {
+            background-color: var(--growing);
+        }
+
+        .blooming .plan-cta {
+            background-color: var(--blooming);
         }
 
         .plan-cta:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
             background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
             transform: translateY(-2px);
         }
 
@@ -213,6 +304,30 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -256,12 +371,6 @@
 
             .dropdown-content a {
                 color: white;
-                padding: 0.8rem 1rem;
-            }
-
-            .dropdown-content a:hover {
-                background-color: var(--primary);
-                color: white;
             }
 
             .plans-container {
@@ -269,8 +378,9 @@
                 padding: 1rem;
             }
 
-            .plans-header h1 {
-                font-size: 2rem;
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
             }
         }
     </style>
@@ -318,10 +428,10 @@
     </section>
 
     <section class="plans-container">
-        <div class="plan-card" id="seedling">
+        <div class="plan-card seedling" id="seedling">
             <div class="plan-header">
                 <div class="plan-name">Seedling Plan</div>
-                <div class="plan-price">Perfect for new businesses</div>
+                <div class="plan-subtitle">Perfect for new businesses</div>
             </div>
             <div class="plan-description">
                 <ul class="features-list">
@@ -331,14 +441,14 @@
                     <li>Email support</li>
                     <li>Basic training</li>
                 </ul>
-                <a href="#contact" class="plan-cta">Get Started</a>
+                <button class="plan-cta" onclick="openModal('Seedling Plan')">Get Started</button>
             </div>
         </div>
 
-        <div class="plan-card" id="growing">
+        <div class="plan-card growing" id="growing">
             <div class="plan-header">
                 <div class="plan-name">Growing Plan</div>
-                <div class="plan-price">For businesses ready to expand</div>
+                <div class="plan-subtitle">For businesses ready to expand</div>
             </div>
             <div class="plan-description">
                 <ul class="features-list">
@@ -349,14 +459,14 @@
                     <li>Priority support</li>
                     <li>Regular training sessions</li>
                 </ul>
-                <a href="#contact" class="plan-cta">Scale Up</a>
+                <button class="plan-cta" onclick="openModal('Growing Plan')">Scale Up</button>
             </div>
         </div>
 
         <div class="plan-card blooming" id="blooming">
             <div class="plan-header">
                 <div class="plan-name">Blooming Plan</div>
-                <div class="plan-price">Complete solution for established businesses</div>
+                <div class="plan-subtitle">Complete solution for established businesses</div>
             </div>
             <div class="plan-description">
                 <ul class="features-list">
@@ -367,15 +477,84 @@
                     <li>Regular consultations</li>
                     <li>Unlimited training</li>
                 </ul>
-                <a href="#contact" class="plan-cta">Transform Your Business</a>
+                <button class="plan-cta" onclick="openModal('Blooming Plan')">Transform Your Business</button>
             </div>
         </div>
     </section>
 
-    <script>
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2>Contact Us</h2>
+            <p>We'll get back to you with more information about the selected plan.</p>
+            <form class="contact-form" action="https://formsubmit.co/cactus.software@outlook.com" method="POST">
+                <input type="hidden" name="_subject" id="emailSubject" value="Interest in Plan">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
+                
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter your email">
+                </div>
+                
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+<script>
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
+        }
+
+        function openModal(planName) {
+            const modal = document.getElementById('contactModal');
+            const emailSubject = document.getElementById('emailSubject');
+            emailSubject.value = `Interest in ${planName}`;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Mostrar mensaje de éxito después del envío del formulario
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Enviar el formulario
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this)
+            }).then(response => {
+                showToast('Thank you! We will contact you soon.');
+                closeModal();
+                this.reset();
+            }).catch(error => {
+                showToast('There was an error. Please try again.');
+            });
+        });
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
         }
     </script>
 </body>
