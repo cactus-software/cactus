@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cactus Software | Plans</title>
+    <style>
+        :root {
+            --primary: #2D6A4F;
+            --primary-light: #40916C;
+            --secondary: #81B29A;
+            --accent: #F4A261;
+            --dark: #1B4332;
+            --light: #F8F9F7;
+            --card-bg: #FFFFFF;
+            --highlight: #95D5B2;
+            --sand: #FEFAE0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            padding-top: 60px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--primary);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links > a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown > a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        /* Header */
+        .plans-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .plans-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Plans Section */
+        .plans-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-header {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .blooming .plan-header {
+            background-color: var(--accent);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .plan-description {
+            padding: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "🌵";
+            position: absolute;
+            left: 0;
+        }
+
+        .plan-cta {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .plan-cta:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                padding: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown > a {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .dropdown-content {
+                position: static;
+                background-color: var(--secondary);
+                width: 100%;
+                margin-top: 0;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+
+            .dropdown-content a {
+                color: white;
+                padding: 0.8rem 1rem;
+            }
+
+            .dropdown-content a:hover {
+                background-color: var(--primary);
+                color: white;
+            }
+
+            .plans-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .plans-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <a href="index.html" class="logo">🌵 Cactus Software</a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#">Services ▼</a>
+                    <div class="dropdown-content">
+                        <a href="services.html#core">Core Solutions</a>
+                        <a href="services.html#growth">Growth Suite</a>
+                        <a href="services.html#smart">Smart Tools</a>
+                        <a href="services.html#care">Care Package</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#">About ▼</a>
+                    <div class="dropdown-content">
+                        <a href="about.html#mission">Mission & Vision</a>
+                        <a href="about.html#values">Values</a>
+                        <a href="about.html#team">Team</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#">Plans ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#seedling">Seedling Plan</a>
+                        <a href="#growing">Growing Plan</a>
+                        <a href="#blooming">Blooming Plan</a>
+                    </div>
+                </div>
+                <a href="careers.html">Careers</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <section class="plans-header">
+        <h1>Choose Your Growth Path</h1>
+        <p>Select the plan that best fits your business needs</p>
+    </section>
+
+    <section class="plans-container">
+        <div class="plan-card" id="seedling">
+            <div class="plan-header">
+                <div class="plan-name">Seedling Plan</div>
+                <div class="plan-price">Perfect for new businesses</div>
+            </div>
+            <div class="plan-description">
+                <ul class="features-list">
+                    <li>Basic inventory system</li>
+                    <li>Simple POS</li>
+                    <li>Standard website</li>
+                    <li>Email support</li>
+                    <li>Basic training</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Get Started</a>
+            </div>
+        </div>
+
+        <div class="plan-card" id="growing">
+            <div class="plan-header">
+                <div class="plan-name">Growing Plan</div>
+                <div class="plan-price">For businesses ready to expand</div>
+            </div>
+            <div class="plan-description">
+                <ul class="features-list">
+                    <li>Full inventory management</li>
+                    <li>Advanced POS features</li>
+                    <li>Custom website</li>
+                    <li>Mobile app</li>
+                    <li>Priority support</li>
+                    <li>Regular training sessions</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Scale Up</a>
+            </div>
+        </div>
+
+        <div class="plan-card blooming" id="blooming">
+            <div class="plan-header">
+                <div class="plan-name">Blooming Plan</div>
+                <div class="plan-price">Complete solution for established businesses</div>
+            </div>
+            <div class="plan-description">
+                <ul class="features-list">
+                    <li>All advanced features</li>
+                    <li>Custom mobile app</li>
+                    <li>Business intelligence tools</li>
+                    <li>24/7 support</li>
+                    <li>Regular consultations</li>
+                    <li>Unlimited training</li>
+                </ul>
+                <a href="#contact" class="plan-cta">Transform Your Business</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
