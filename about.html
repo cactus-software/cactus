@@ -184,6 +184,75 @@
             margin-bottom: 1rem;
         }
 
+        .team-section {
+    background-color: var(--light);
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+}
+
+.team-grid {
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-header {
+    background-color: #8B5E3C;
+    color: white;
+    padding: 1.5rem;
+}
+
+.team-header h3 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.team-content {
+    padding: 1.5rem;
+}
+
+.responsibility-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.responsibility-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.responsibility-list li::before {
+    content: "🌵";
+    position: absolute;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-card {
+        margin-bottom: 1rem;
+    }
+}
+
         .section-title {
             color: var(--primary);
             margin-bottom: 2rem;
@@ -450,6 +519,95 @@
             </div>
         </div>
     </section>
+
+    <section id="team" class="team-section">
+    <h2 class="section-title">Core Leadership Team</h2>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-header">
+                <h3>Chief Technology Officer (CTO)</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Leads overall technical strategy and innovation</li>
+                    <li>Ensures our solutions remain cutting-edge yet practical</li>
+                    <li>Oversees all technology development and implementation</li>
+                    <li>Makes key decisions about technical architecture</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-header">
+                <h3>Backend Development Lead</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Manages server-side applications and databases</li>
+                    <li>Ensures data security and system performance</li>
+                    <li>Designs efficient database structures</li>
+                    <li>Implements business logic and API development</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-header">
+                <h3>Frontend Development Lead</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Creates user-friendly interfaces</li>
+                    <li>Ensures excellent user experience across all platforms</li>
+                    <li>Develops responsive web applications</li>
+                    <li>Implements modern design principles</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-header">
+                <h3>Software Architecture Lead</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Designs scalable system architectures</li>
+                    <li>Ensures integration between all systems</li>
+                    <li>Plans for future growth and scalability</li>
+                    <li>Maintains technical documentation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-header">
+                <h3>DevOps/Infrastructure Lead</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Manages deployment and hosting infrastructure</li>
+                    <li>Ensures system reliability and uptime</li>
+                    <li>Implements security measures</li>
+                    <li>Automates development processes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-card">
+            <div class="team-header">
+                <h3>Design & Brand Manager</h3>
+            </div>
+            <div class="team-content">
+                <ul class="responsibility-list">
+                    <li>Combines technical understanding with user experience</li>
+                    <li>Manages company's brand and social media presence</li>
+                    <li>Creates intuitive interfaces for our products</li>
+                    <li>Ensures consistency across all digital platforms</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section id="market" class="target-market">
         <h2 class="section-title">Who We Serve</h2>
